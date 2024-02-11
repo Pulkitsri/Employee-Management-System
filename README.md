@@ -3,7 +3,7 @@
  1- Show List of Employees
  2- Add Employee
  3- Modify Employee
- 4- Delele Employee
+ 4- Delele Employee 
 
  We can perform the above mentioned operations using REST API as well as UI.
  Technostack : SpringBoot, Thymeleaf
