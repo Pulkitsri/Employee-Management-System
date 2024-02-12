@@ -1,6 +1,9 @@
 package com.pulkit.EmployeeManagementSystem.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -24,8 +27,9 @@ public class EmpController {
     
     @GetMapping("/")
     public String viewHomePage(Model model){
-        model.addAttribute("listemployees", employeeService.getAllEmployees());
-        return "index";
+        // model.addAttribute("listemployees", employeeService.getAllEmployees());
+        // return "index";
+        return findPagenated(1,model);
     }
 
     @GetMapping("/showNewEmployeeForm")
@@ -65,5 +69,18 @@ public class EmpController {
         //set employee as a model attribute to pre populate the form
         model.addAttribute("status", status);
         return "redirect:/";
+    }
+
+    @GetMapping("/page/{pageNo}")
+    public String findPagenated(@PathVariable ( value="pageNo" ) int pageNo,Model model){
+        int pageSize =5;
+
+        Page<Employee> page =  employeeService.findPagenated(pageNo, pageSize);
+        List<Employee> listemployees = page.getContent();
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listemployees", listemployees);
+        return "index";
     }
 }

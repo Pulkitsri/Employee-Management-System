@@ -3,6 +3,9 @@ package com.pulkit.EmployeeManagementSystem.Service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.pulkit.EmployeeManagementSystem.Model.Employee;
 import com.pulkit.EmployeeManagementSystem.Repository.EmployeeRepo;
@@ -56,6 +59,12 @@ public class EmployeeServiceImpl implements EmployeeService{
     public List<Employee> getAllEmployees() {
         List<Employee> allEmployees = employeeRepo.findAll();
         return allEmployees;
-    }   
-    
+    }
+
+    @Override
+    public Page<Employee> findPagenated(int pageNo, int pageSize) {
+        Pageable pageable =  PageRequest.of(pageNo-1, pageSize);
+        return this.employeeRepo.findAll(pageable);
+        
+    }
 }
