@@ -18,6 +18,7 @@
                     <th>Employee Address</th>
                     <th>Employee Age</th>
                     <th>Employee Salary</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,9 @@
                     <td th:text="${employee.address}"></td>
                     <td th:text="${employee.age}"></td>
                     <td th:text="${employee.salary}"></td>
+                    <td><a th:href ="@{/showFormforUpdate/{id}(id=${employee.empId})}" class="btn btn-primary">Update</a>
+                        <a th:href ="@{/deleteEmployee/{id}(id=${employee.empId})}" class="btn btn-danger">Delete</a></td>
+                    
                 </tr>
             </tbody>
         </table>
