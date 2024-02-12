@@ -4,6 +4,7 @@
  2- Add Employee
  3- Update Employee
  4- Delele Employee 
+ 5- Pagination
 
  We can perform the above mentioned operations using REST API as well as UI.
  Technostack : SpringBoot, Thymeleaf
